@@ -1,0 +1,526 @@
+{
+  "metadata": {
+    "generated_at": "2026-10-30T15:23:03.768753+00:00",
+    "csv_path": "data/orders_sample.csv",
+    "training_cutoff_date": "2026-08-31",
+    "model_version": "v1.0-heuristic-logodds",
+    "provenance": "Transparent heuristic log-odds scorer with Empirical Bayes pincode smoothing (not MLE-fitted or calibrated logistic regression)",
+    "policy_version": "default_v1",
+    "confidence_level": 0.95,
+    "interval_method": "Wilson score interval (exact)"
+  },
+  "dataset_validation": {
+    "raw_csv_rows": 2018,
+    "duplicate_order_id_rows": 30,
+    "unique_orders_total": 1988,
+    "resolved_unique_orders": 1987,
+    "unresolved_in_transit": 1,
+    "delivered_unique_orders": 1422,
+    "rto_unique_orders": 565,
+    "overall_rto_rate": 0.2843,
+    "pincode_audit_resolved_orders": {
+      "known_valid_pincodes_orders": 1975,
+      "unique_known_pincodes": 1066,
+      "single_order_pincodes": 554,
+      "pincodes_under_5_orders": 1036,
+      "pincodes_10_or_more_orders": 0,
+      "max_orders_in_any_pincode": 8,
+      "missing_pincodes_resolved_orders": 12,
+      "missing_pincodes_across_unique_orders": 12,
+      "investigation_note": "In deduplicated resolved orders (1,987 orders), there are exactly 1,066 known pincodes, 554 single-order pincodes, 1,036 with <5 orders, and 0 with >=10 orders (max is 8). The single IN_TRANSIT order (KT100021) has pincode 600030, which is unique to that order, bringing total unique orders pincodes to 1,067. There are exactly 12 missing pincodes."
+    },
+    "suspicious_addresses_count": 153,
+    "fake_names_count": 40
+  },
+  "empirical_segments_wilson_ci": {
+    "prior_rto_history": [
+      {
+        "segment": "0 prior RTO",
+        "total_orders": 1845,
+        "rtos": 501,
+        "rto_rate": 0.2715,
+        "wilson_ci_lower_95": 0.2517,
+        "wilson_ci_upper_95": 0.2923
+      },
+      {
+        "segment": "1 prior RTO",
+        "total_orders": 108,
+        "rtos": 38,
+        "rto_rate": 0.3519,
+        "wilson_ci_lower_95": 0.2683,
+        "wilson_ci_upper_95": 0.4456
+      },
+      {
+        "segment": ">=2 prior RTO",
+        "total_orders": 34,
+        "rtos": 26,
+        "rto_rate": 0.7647,
+        "wilson_ci_lower_95": 0.6,
+        "wilson_ci_upper_95": 0.8756
+      }
+    ],
+    "address_quality": [
+      {
+        "segment": "Deliverable Address",
+        "total_orders": 1834,
+        "rtos": 467,
+        "rto_rate": 0.2546,
+        "wilson_ci_lower_95": 0.2352,
+        "wilson_ci_upper_95": 0.2751
+      },
+      {
+        "segment": "Incomplete / Suspicious Address",
+        "total_orders": 153,
+        "rtos": 98,
+        "rto_rate": 0.6405,
+        "wilson_ci_lower_95": 0.5619,
+        "wilson_ci_upper_95": 0.7123
+      }
+    ],
+    "customer_type": [
+      {
+        "segment": "First-time (0 prior orders)",
+        "total_orders": 1495,
+        "rtos": 452,
+        "rto_rate": 0.3023,
+        "wilson_ci_lower_95": 0.2796,
+        "wilson_ci_upper_95": 0.3261
+      },
+      {
+        "segment": "Repeat (>=1 prior orders)",
+        "total_orders": 492,
+        "rtos": 113,
+        "rto_rate": 0.2297,
+        "wilson_ci_lower_95": 0.1947,
+        "wilson_ci_upper_95": 0.2689
+      }
+    ],
+    "order_value_bands": [
+      {
+        "segment": "< Rs 500",
+        "total_orders": 659,
+        "rtos": 182,
+        "rto_rate": 0.2762,
+        "wilson_ci_lower_95": 0.2434,
+        "wilson_ci_upper_95": 0.3115
+      },
+      {
+        "segment": "Rs 500 - Rs 999",
+        "total_orders": 643,
+        "rtos": 191,
+        "rto_rate": 0.297,
+        "wilson_ci_lower_95": 0.263,
+        "wilson_ci_upper_95": 0.3335
+      },
+      {
+        "segment": "Rs 1,000 - Rs 1,499",
+        "total_orders": 404,
+        "rtos": 82,
+        "rto_rate": 0.203,
+        "wilson_ci_lower_95": 0.1666,
+        "wilson_ci_upper_95": 0.2449
+      },
+      {
+        "segment": "Rs 1,500 - Rs 2,499",
+        "total_orders": 244,
+        "rtos": 94,
+        "rto_rate": 0.3852,
+        "wilson_ci_lower_95": 0.3264,
+        "wilson_ci_upper_95": 0.4476
+      },
+      {
+        "segment": "Rs 2,500+",
+        "total_orders": 37,
+        "rtos": 16,
+        "rto_rate": 0.4324,
+        "wilson_ci_lower_95": 0.2867,
+        "wilson_ci_upper_95": 0.5909
+      }
+    ],
+    "marketing_channels": [
+      {
+        "segment": "meta_ads",
+        "total_orders": 765,
+        "rtos": 239,
+        "rto_rate": 0.3124,
+        "wilson_ci_lower_95": 0.2806,
+        "wilson_ci_upper_95": 0.3461
+      },
+      {
+        "segment": "whatsapp_broadcast",
+        "total_orders": 268,
+        "rtos": 70,
+        "rto_rate": 0.2612,
+        "wilson_ci_lower_95": 0.2122,
+        "wilson_ci_upper_95": 0.3169
+      },
+      {
+        "segment": "direct",
+        "total_orders": 253,
+        "rtos": 58,
+        "rto_rate": 0.2292,
+        "wilson_ci_lower_95": 0.1817,
+        "wilson_ci_upper_95": 0.2849
+      },
+      {
+        "segment": "google_ads",
+        "total_orders": 244,
+        "rtos": 69,
+        "rto_rate": 0.2828,
+        "wilson_ci_lower_95": 0.23,
+        "wilson_ci_upper_95": 0.3423
+      },
+      {
+        "segment": "instagram_organic",
+        "total_orders": 232,
+        "rtos": 68,
+        "rto_rate": 0.2931,
+        "wilson_ci_lower_95": 0.2383,
+        "wilson_ci_upper_95": 0.3547
+      },
+      {
+        "segment": "influencer",
+        "total_orders": 225,
+        "rtos": 61,
+        "rto_rate": 0.2711,
+        "wilson_ci_lower_95": 0.2172,
+        "wilson_ci_upper_95": 0.3327
+      }
+    ],
+    "courier_delivery": [
+      {
+        "segment": "Delhivery",
+        "total_orders": 699,
+        "rtos": 182,
+        "rto_rate": 0.2604,
+        "wilson_ci_lower_95": 0.2292,
+        "wilson_ci_upper_95": 0.2942
+      },
+      {
+        "segment": "Shadowfax",
+        "total_orders": 416,
+        "rtos": 120,
+        "rto_rate": 0.2885,
+        "wilson_ci_lower_95": 0.247,
+        "wilson_ci_upper_95": 0.3338
+      },
+      {
+        "segment": "Xpressbees",
+        "total_orders": 391,
+        "rtos": 121,
+        "rto_rate": 0.3095,
+        "wilson_ci_lower_95": 0.2657,
+        "wilson_ci_upper_95": 0.357
+      },
+      {
+        "segment": "Ecom Express",
+        "total_orders": 297,
+        "rtos": 88,
+        "rto_rate": 0.2963,
+        "wilson_ci_lower_95": 0.2472,
+        "wilson_ci_upper_95": 0.3506
+      },
+      {
+        "segment": "BlueDart",
+        "total_orders": 184,
+        "rtos": 54,
+        "rto_rate": 0.2935,
+        "wilson_ci_lower_95": 0.2324,
+        "wilson_ci_upper_95": 0.363
+      }
+    ]
+  },
+  "model_calibration_metrics": {
+    "model_version": "v1.0-heuristic-logodds",
+    "provenance": "Transparent heuristic log-odds scorer with Empirical Bayes pincode smoothing (not MLE-fitted or calibrated logistic regression)",
+    "training_cohort_size": 1658,
+    "holdout_cohort_size": 329,
+    "holdout_brier_score": 0.1705,
+    "constant_prior_baseline_brier_score": 0.1938,
+    "holdout_precision_at_035": 0.6222,
+    "holdout_recall_at_035": 0.3256
+  },
+  "september_2026_holdout_replay": {
+    "population_size": 329,
+    "observed_delivered": 243,
+    "observed_rto": 86,
+    "observed_rto_rate": 0.2614,
+    "action_bucket_distribution": {
+      "CONFIRM": 180,
+      "SHIP_AS_IS": 111,
+      "HOLD": 36,
+      "NUDGE_PREPAID": 2
+    },
+    "observed_outcomes_by_bucket": {
+      "CONFIRM": {
+        "total_orders": 180,
+        "delivered": 136,
+        "rto": 44,
+        "observed_rto_rate": 0.2444,
+        "wilson_ci_95": [
+          0.1874,
+          0.3121
+        ]
+      },
+      "HOLD": {
+        "total_orders": 36,
+        "delivered": 13,
+        "rto": 23,
+        "observed_rto_rate": 0.6389,
+        "wilson_ci_95": [
+          0.4758,
+          0.7752
+        ]
+      },
+      "NUDGE_PREPAID": {
+        "total_orders": 2,
+        "delivered": 1,
+        "rto": 1,
+        "observed_rto_rate": 0.5,
+        "wilson_ci_95": [
+          0.0945,
+          0.9055
+        ]
+      },
+      "SHIP_AS_IS": {
+        "total_orders": 111,
+        "delivered": 93,
+        "rto": 18,
+        "observed_rto_rate": 0.1622,
+        "wilson_ci_95": [
+          0.1051,
+          0.2418
+        ]
+      }
+    },
+    "observed_baseline_financials": {
+      "delivered_revenue_rupees": 209834.0,
+      "cogs_rupees": 79736.92,
+      "forward_shipping_rupees": 21385.0,
+      "return_shipping_rupees": 5590.0,
+      "packaging_rupees": 8225.0,
+      "damage_loss_rupees": 1238.4,
+      "direct_rto_cash_loss_rupees": 14568.4,
+      "baseline_net_contribution_rupees": 93658.68
+    },
+    "reconciled_financial_bridge_september_329_orders": {
+      "baseline_net_contribution_rupees": 93658.68,
+      "avoided_rto_freight_and_damage_rupees": 8932.69,
+      "change_in_delivered_contribution_rupees": -8862.99,
+      "prepaid_incentive_discounts_rupees": -11.0,
+      "whatsapp_interactive_messaging_rupees": -145.92,
+      "payment_gateway_fees_rupees": -4.39,
+      "policy_net_contribution_rupees": 93567.07,
+      "net_financial_improvement_rupees": -91.61,
+      "reconciliation_discrepancy_rupees": 0.0,
+      "avoided_rtos_count": 52.731,
+      "policy_rtos_count": 33.269,
+      "passive_auto_cancel_net_advantage_rupees": -1924.92
+    },
+    "separated_monthly_scaled_projection": {
+      "benchmark_definition": "Assignment Operating Baseline (1,650 monthly COD orders from 3,000 total orders @ 55% COD share)",
+      "scaling_methodology": "September-derived extrapolation using exact unrounded scale factor (1650 / 329 = 5.015197568389058)",
+      "scale_factor_exact": 5.015197568389058,
+      "projected_monthly_avoided_rtos": 264.5,
+      "projected_avoided_rto_freight_rupees": 44799.22,
+      "projected_change_in_delivered_contribution_rupees": -44449.64,
+      "projected_prepaid_discounts_rupees": -55.17,
+      "projected_messaging_costs_rupees": -731.82,
+      "projected_payment_gateway_fees_rupees": -22.02,
+      "projected_net_monthly_gain_rupees": -459.43,
+      "projected_passive_auto_cancel_net_rupees": -9653.85
+    },
+    "scenarios": {
+      "conservative": {
+        "total_orders": 329,
+        "orders_by_action": {
+          "SHIP_AS_IS": 111,
+          "CONFIRM": 180,
+          "NUDGE_PREPAID": 2,
+          "HOLD": 36
+        },
+        "baseline_net_contribution_rupees": 93658.68,
+        "policy_net_contribution_rupees": 79793.24,
+        "net_financial_improvement_rupees": -13865.44,
+        "avoided_rto_freight_and_damage_rupees": 7802.29,
+        "change_in_delivered_contribution_rupees": -21511.32,
+        "prepaid_incentive_discounts_rupees": -7.5,
+        "whatsapp_interactive_messaging_rupees": -145.92,
+        "payment_gateway_fees_rupees": -2.99,
+        "reconciliation_discrepancy_rupees": 0.0,
+        "avoided_rtos_count": 46.058,
+        "policy_rtos_count": 39.942,
+        "baseline_rtos_count": 86.0,
+        "baseline_rto_rate": 0.2614,
+        "policy_rto_rate": 0.1214,
+        "monthly_scaled_projection": {
+          "scale_factor_exact": 5.015197568389058,
+          "projected_monthly_avoided_rtos": 231.0,
+          "projected_avoided_rto_freight_rupees": 39130.04,
+          "projected_change_in_delivered_contribution_rupees": -107883.52,
+          "projected_prepaid_discounts_rupees": -37.61,
+          "projected_messaging_costs_rupees": -731.82,
+          "projected_payment_gateway_fees_rupees": -15.02,
+          "projected_net_monthly_gain_rupees": -69537.93
+        },
+        "scenario_name": "Conservative Scenario",
+        "assumptions": {
+          "confirm_response_rate": 0.6,
+          "confirmed_rto_rate": 0.18,
+          "prepaid_conversion_rate": 0.15,
+          "prepaid_residual_rto_rate": 0.06,
+          "hold_recovery_rate": 0.5,
+          "hold_rto_leakage_rate": 0.1
+        },
+        "notes": "Hold outcomes reflect conditional operations assumptions (e.g. active address outreach), not demonstrated performance of unverified holding. Conservative leakage erodes net contribution."
+      },
+      "base": {
+        "total_orders": 329,
+        "orders_by_action": {
+          "SHIP_AS_IS": 111,
+          "CONFIRM": 180,
+          "NUDGE_PREPAID": 2,
+          "HOLD": 36
+        },
+        "baseline_net_contribution_rupees": 93658.68,
+        "policy_net_contribution_rupees": 93567.07,
+        "net_financial_improvement_rupees": -91.61,
+        "avoided_rto_freight_and_damage_rupees": 8932.69,
+        "change_in_delivered_contribution_rupees": -8862.99,
+        "prepaid_incentive_discounts_rupees": -11.0,
+        "whatsapp_interactive_messaging_rupees": -145.92,
+        "payment_gateway_fees_rupees": -4.39,
+        "reconciliation_discrepancy_rupees": 0.0,
+        "avoided_rtos_count": 52.731,
+        "policy_rtos_count": 33.269,
+        "baseline_rtos_count": 86.0,
+        "baseline_rto_rate": 0.2614,
+        "policy_rto_rate": 0.1011,
+        "monthly_scaled_projection": {
+          "scale_factor_exact": 5.015197568389058,
+          "projected_monthly_avoided_rtos": 264.5,
+          "projected_avoided_rto_freight_rupees": 44799.22,
+          "projected_change_in_delivered_contribution_rupees": -44449.64,
+          "projected_prepaid_discounts_rupees": -55.17,
+          "projected_messaging_costs_rupees": -731.82,
+          "projected_payment_gateway_fees_rupees": -22.02,
+          "projected_net_monthly_gain_rupees": -459.43
+        },
+        "scenario_name": "Base Scenario",
+        "assumptions": {
+          "confirm_response_rate": 0.7,
+          "confirmed_rto_rate": 0.12,
+          "prepaid_conversion_rate": 0.22,
+          "prepaid_residual_rto_rate": 0.04,
+          "hold_recovery_rate": 0.7,
+          "hold_rto_leakage_rate": 0.0
+        },
+        "notes": "Hold outcomes reflect conditional operations assumptions (e.g. active address outreach), not demonstrated performance of unverified holding. Conservative leakage erodes net contribution."
+      },
+      "optimistic": {
+        "total_orders": 329,
+        "orders_by_action": {
+          "SHIP_AS_IS": 111,
+          "CONFIRM": 180,
+          "NUDGE_PREPAID": 2,
+          "HOLD": 36
+        },
+        "baseline_net_contribution_rupees": 93658.68,
+        "policy_net_contribution_rupees": 104378.52,
+        "net_financial_improvement_rupees": 10719.84,
+        "avoided_rto_freight_and_damage_rupees": 9550.5,
+        "change_in_delivered_contribution_rupees": 1336.25,
+        "prepaid_incentive_discounts_rupees": -15.0,
+        "whatsapp_interactive_messaging_rupees": -145.92,
+        "payment_gateway_fees_rupees": -5.99,
+        "reconciliation_discrepancy_rupees": 0.0,
+        "avoided_rtos_count": 56.378,
+        "policy_rtos_count": 29.622,
+        "baseline_rtos_count": 86.0,
+        "baseline_rto_rate": 0.2614,
+        "policy_rto_rate": 0.09,
+        "monthly_scaled_projection": {
+          "scale_factor_exact": 5.015197568389058,
+          "projected_monthly_avoided_rtos": 282.7,
+          "projected_avoided_rto_freight_rupees": 47897.65,
+          "projected_change_in_delivered_contribution_rupees": 6701.54,
+          "projected_prepaid_discounts_rupees": -75.23,
+          "projected_messaging_costs_rupees": -731.82,
+          "projected_payment_gateway_fees_rupees": -30.03,
+          "projected_net_monthly_gain_rupees": 53762.11
+        },
+        "scenario_name": "Optimistic Scenario",
+        "assumptions": {
+          "confirm_response_rate": 0.8,
+          "confirmed_rto_rate": 0.08,
+          "prepaid_conversion_rate": 0.3,
+          "prepaid_residual_rto_rate": 0.02,
+          "hold_recovery_rate": 0.85,
+          "hold_rto_leakage_rate": 0.0
+        },
+        "notes": "Hold outcomes reflect conditional operations assumptions (e.g. active address outreach), not demonstrated performance of unverified holding. Conservative leakage erodes net contribution."
+      }
+    },
+    "prepaid_discount_justification": {
+      "targeted_segment": "Repeat returners (customer_prior_rto >= 2, empirical RTO = 76.47%)",
+      "aov_rupees": 649.0,
+      "expected_loss_if_shipped_cod_rupees": -56.18,
+      "discount_options_evaluated": [
+        {
+          "discount_rupees": 0.0,
+          "estimated_conversion_rate": 0.1,
+          "pg_fee_rupees": 12.98,
+          "net_prepaid_contribution_per_order": 280.13,
+          "nonconverter_fallback_ev": -56.18,
+          "expected_incremental_pool": 32.83,
+          "total_expected_pool_ev": -23.35,
+          "breakeven_conversion_rate_percent": 10.0
+        },
+        {
+          "discount_rupees": 15.0,
+          "estimated_conversion_rate": 0.19,
+          "pg_fee_rupees": 12.68,
+          "net_prepaid_contribution_per_order": 265.43,
+          "nonconverter_fallback_ev": -56.18,
+          "expected_incremental_pool": 60.31,
+          "total_expected_pool_ev": 4.13,
+          "breakeven_conversion_rate_percent": 10.46
+        },
+        {
+          "discount_rupees": 25.0,
+          "estimated_conversion_rate": 0.25,
+          "pg_fee_rupees": 12.48,
+          "net_prepaid_contribution_per_order": 255.63,
+          "nonconverter_fallback_ev": -56.18,
+          "expected_incremental_pool": 77.15,
+          "total_expected_pool_ev": 20.97,
+          "breakeven_conversion_rate_percent": 10.79
+        },
+        {
+          "discount_rupees": 35.0,
+          "estimated_conversion_rate": 0.31,
+          "pg_fee_rupees": 12.28,
+          "net_prepaid_contribution_per_order": 245.83,
+          "nonconverter_fallback_ev": -56.18,
+          "expected_incremental_pool": 92.82,
+          "total_expected_pool_ev": 36.64,
+          "breakeven_conversion_rate_percent": 11.14
+        },
+        {
+          "discount_rupees": 50.0,
+          "estimated_conversion_rate": 0.4,
+          "pg_fee_rupees": 11.98,
+          "net_prepaid_contribution_per_order": 231.13,
+          "nonconverter_fallback_ev": -56.18,
+          "expected_incremental_pool": 114.12,
+          "total_expected_pool_ev": 57.94,
+          "breakeven_conversion_rate_percent": 11.71
+        }
+      ],
+      "breakeven_conversion_rate_percent": 10.75,
+      "expected_conversion_rate_percent": 22.0,
+      "residual_prepaid_rto_risk_percent": 4.0,
+      "rationale": "At Rs 25 discount (3.8% of AOV), even a minor conversion lift from 10% to 10.75% beats a Rs 0 discount. At 22% expected conversion, offering Rs 25 generates +Rs 12.75 expected value per targeted customer compared to a net expected loss of -Rs 56.18 per order if shipped COD."
+    }
+  }
+}
